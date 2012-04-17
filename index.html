@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+  <!-- Basic Page Needs
+  ================================================== -->
+  <meta charset="utf-8">
+  <title>RECESS</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  ================================================== -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- CSS
+  ================================================== -->
+  <link rel="stylesheet" href="skeleton.css">
+  <link rel="stylesheet" href="layout.css">
+
+</head>
+<body>
+<div class="masthead">
+  <div class="photo"><img src="./horse.jpg"></div>
+  <div class="fill"></div>
+  <div class="container span14">
+    <h1>RECESS</h1>
+    <h3>&ldquo;Something in Helvetica.&rdquo;</h3>
+    <a class="button" href="https://github.com/twitter/recess">view on github</a>
+  </div>
+</div>
+
+<div class="container first span14">
+
+  <h4 id="overview">Overview</h4>
+  <p>Developed at Twitter to support our internal styleguide, <strong>RECESS</strong> is a simple, attractive code quality tool for CSS built on top of LESS.</p>
+
+  <p>Incorporate it into your development process as a linter, or integrate it directly into your build system as a compiler, <strong>RECESS</strong> will keep your source looking clean and super managable.</p>
+
+  <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
+
+  <hr>
+
+  <h4 id="installation">Installation</h4>
+  <p>Run the following line in your terminal:</p>
+  <pre>$ npm install RECESS -g</pre>
+  <p><span class="label warning">Note:</span> You'll need to have <a href="https://github.com/joyent/node">Node.js</a> and <a href="https://npmjs.org/">NPM</a> installed.</p>
+  <hr>
+
+  <h4 id="what-it-does">What It Does</h4>
+
+  <p>Use RECESS as a <strong>linter</strong> to keep your styles tidy and consistent.</p>
+  </p>The rules are as follows (you can disable individual rules if you don&rsquo;t want to abide by them):</p>
+
+  <ul>
+    <li>&raquo; <strong>noIDs</strong> - Don&rsquo;t style IDs like <code>#foo</code></li>
+    <li>&raquo; <strong>noJSPrefix</strong> - Don&rsquo;t style <code>.js-</code> prefixed classnames</li>
+    <li>&raquo; <strong>noOverqualifying</strong> - Don&rsquo;t overqualify your selectors, like <code>div#foo.bar</code></li>
+    <li>&raquo; <strong>noUnderscores</strong> - Don&rsquo;t use underscores when naming classes, like <code>.my_class</code></li>
+    <li>&raquo; <strong>noUniversalSelectors</strong> - Don&rsquo;t use the universal selector, <code>*</code></li>
+    <li>&raquo; <strong>zeroUnits</strong> - Don&rsquo;t add the unit to a value of 0, like <code>0px</code></li>
+    <li>&raquo; <strong>strictPropertyOrder</strong> - Enforce a strict property order (order defined <a href="https://github.com/twitter/recess/blob/master/lib/lint/strict-property-order.js#L36" target="_blank">here</a>)</li>
+  </ul>
+
+  <p>RECESS can also <strong>compile</strong> your styles! Powered by the LESS tokenizer, this means you can compile both CSS and LESS source files directly. The compiler will normalize whitespace, strip units from 0 values, and reorder your properties for you.</p>
+
+  <h6>CSS Input</h6>
+  <p>
+<pre>
+.avatar img{
+  -ms-box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.2);
+  -o-box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+</pre>
+</p>
+
+  <h6>RECESS Output</h6>
+  <p>
+<pre>
+.avatar img {
+  -webkit-box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.2);
+     -moz-box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.2);
+      -ms-box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.2);
+       -o-box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+</pre>
+</p>
+
+  <hr>
+
+  <h4 id="command-line-interface">Command Line Interface</h4>
+
+  <p>RECESS is first and foremost a command line tool. It takes a path and optional arguments.<p>
+  <pre>$ RECESS ./CSS/application.css [--options]</pre>
+  <p>In adition to the rules above you can specify the additional options:
+  <ul>
+    <li>&raquo; <strong>help</strong> - provides a quick cli cheatsheet</li>
+    <li>&raquo; <strong>compile</strong> - outputs your compiled source</li>
+    <li>&raquo; <strong>compress</strong> - outputs your compiled source, but minified</li>
+  </ul>
+
+  <p>An example of linting all CSS files in a project but ignoring ID and underscore validation might look something like this:</p>
+
+  <pre>$ RECESS ./CSS/* --noIDs false --noUnderscores false</pre>
+
+  <p>You will probably find it desirable to keep your configuration options in a <code>.recessrc</code> file. An example config file might look like this:</p>
+
+ <pre>
+{
+  "noIDs": false
+, "noJSPrefix": false
+, "noUniversalSelectors": false
+}
+</pre>
+
+<p>By default, if no <code>--config</code> path is provided, RECESS will check for a local <code>.recessrc</code> file.
+
+  <hr>
+
+  <h4 id="programmatic-api">Programmatic API</h4>
+  <p>RECESS also provides a programmatic API for linting and compiling. This might be useful when integrating RECESS directly into your build process. The API accepts a path (or array of paths), an optional options object, and an optional callback (fired when RECESS finishes processing your files).</p>
+  <pre>require('recess')(path, options, callback)</pre>
+  <p>Available options and their defaults:</p>
+  <ul>
+    <li>&raquo; <strong>compile</strong> - false</li>
+    <li>&raquo; <strong>compress</strong> - false</li>
+    <li>&raquo; <strong>noIDs</strong> - true</li>
+    <li>&raquo; <strong>noJSPrefix</strong> - true</li>
+    <li>&raquo; <strong>noOverqualifying</strong> - true</li>
+    <li>&raquo; <strong>noUnderscores</strong> - true</li>
+    <li>&raquo; <strong>noUniversalSelectors</strong> - true</li>
+    <li>&raquo; <strong>strictPropertyOrder</strong> - true</li>
+    <li>&raquo; <strong>zeroUnits</strong> - true</li>
+  </ul>
+  <p>Compiling the file <code>fat.less</code> might look like this:</p>
+  <pre>var recess = require('recess')
+
+recess('./js/fat.less', { compile: true }, function (err, obj) {
+  if (err) throw err
+  console.log(
+    obj        // recess instance for fat.less
+  , obj.output // array of loggable content
+  , obj.errors // array of failed lint rules
+  )
+})</pre>
+<p><span class="label warning">Note:</span> If you pass multiple files into RECESS, <code>obj</code> will contain an array of RECESS instances.</p>
+  <hr>
+
+  <h4 id="programmatic-api">Issues or Feedback</h4>
+
+   <p>If you have any problems, concerns, or just want to say hi please let me know by filing a <a href="github.com/twitter/recess">github issue here</a> or messaging me on twitter at <a href="twitter.com/fat">@fat</a>. Thanks!</p>
+
+  <hr>
+  <p class="license">Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+  <script>
+    /mobile/i.test(navigator.userAgent) && !location.hash && setTimeout(function () {
+      if (!pageYOffset) window.scrollTo(0, 1);
+    }, 1000)
+  </script>
+
+</div>
+</body>
+</html>
