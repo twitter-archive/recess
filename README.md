@@ -3,7 +3,7 @@ RECESS [![Build Status](https://secure.travis-ci.org/twitter/recess.png)](http:/
 
 Developed at Twitter to support our internal styleguide, RECESS is a simple, attractive code quality tool for CSS built on top of LESS.
 
-Incorporate it into your development process as a linter, or integrate it directly into your build system as a compiler, RECESS will keep your source looking clean and super managable.
+Incorporate it into your development process as a linter, or integrate it directly into your build system as a compiler, RECESS will keep your source looking clean and super manageable.
 
 
 GENERAL USE
