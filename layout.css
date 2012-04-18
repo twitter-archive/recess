@@ -221,6 +221,7 @@ html, body {
 .masthead {
   min-height: 100%;
   text-align: center;
+  background-color: #222;
   box-shadow: inset 0 0 1000px rgba(0, 0, 0, 1), 0 1px 10px rgba(0, 0, 0, 0.4);
 }
 
@@ -237,6 +238,11 @@ html, body {
 
 .masthead .fill {
   background: rgba(0,0,0, 0.7);
+}
+
+.masthead .photo {
+  -webkit-animation: fade .75s ease-out;
+  -moz-animation: fade .75s ease-out;
 }
 
 .masthead .photo img {
@@ -394,5 +400,22 @@ ul {
     position: relative;
     height: 420px;
     min-height: 0;
+  }
+}
+
+@-webkit-keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+@-moz-keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
   }
 }
