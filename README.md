@@ -22,7 +22,7 @@ OPTIONS
 - --noIDs - doesn't complain about using IDs in your stylesheets
 - --noJSPrefix - doesn't complain about styling `.js-` prefixed classnames
 - --noOverqualifying - doesn't complain about overqualified selectors (ie: `div#foo.bar`)
-- --noUnderscores - doesn't complain about using semicolons in your class names
+- --noUnderscores - doesn't complain about using underscores in your class names
 - --noUniversalSelectors - doesn't complain about using the universal `*` selector
 - --strictPropertyOrder - doesn't looking into your property ordering
 - --zeroUnits - doesn't complain if you add units to values of 0
