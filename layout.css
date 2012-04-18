@@ -236,12 +236,13 @@ html, body {
 }
 
 .masthead .fill {
-  background: rgba(10, 5, 5, 0.7);
+  background: rgba(0,0,0, 0.7);
 }
 
 .masthead .photo img {
-  max-width: 100%;
+  width: 100%;
   min-height: 100%;
+  min-width: 700px;
 }
 
 .masthead .container {
@@ -289,7 +290,9 @@ html, body {
   text-transform: uppercase;
   cursor: pointer;
   background: #de3b16;
-  border-radius: 3px;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
   -webkit-transition: background-color 0.3s ease-in-out;
      -moz-transition: background-color 0.3s ease-in-out;
           transition: background-color 0.3s ease-in-out;
