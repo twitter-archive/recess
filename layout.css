@@ -241,8 +241,14 @@ html, body {
 }
 
 .masthead .photo {
-  -webkit-animation: fade .75s ease-out;
-  -moz-animation: fade .75s ease-out;
+  opacity: 0;
+  -webkit-transition: opacity .5s ease-in-out;
+     -moz-transition: opacity .5s ease-in-out;
+          transition: opacity .5s ease-in-out;
+}
+
+.loaded .masthead .photo {
+  opacity: 1;
 }
 
 .masthead .photo img {
@@ -400,22 +406,5 @@ ul {
     position: relative;
     height: 420px;
     min-height: 0;
-  }
-}
-
-@-webkit-keyframes fade {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 100%;
-  }
-}
-@-moz-keyframes fade {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 100%;
   }
 }
