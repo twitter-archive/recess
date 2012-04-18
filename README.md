@@ -19,6 +19,7 @@ OPTIONS
 - --compile - compiles your code and outputs it to the terminal. Fixes white space and sort order. Can compile css or less.
 - --compress - compress your compiled code.
 - --config - accepts a path, which specifies a json config object
+- --stripColors - removes color from output (useful when logging)
 - --noIDs - doesn't complain about using IDs in your stylesheets
 - --noJSPrefix - doesn't complain about styling `.js-` prefixed classnames
 - --noOverqualifying - doesn't complain about overqualified selectors (ie: `div#foo.bar`)

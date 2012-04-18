@@ -14,6 +14,7 @@ var assert = require('assert')
     , withCompile
 
   console.log = function (string) { loggedStr = string }
+
   withOutCompile = new RECESS.Constructor(null, { cli: true })
   withOutCompile.log('first')
   assert.equal(loggedStr, 'first', 'console.log was not called when compile was true')
@@ -25,6 +26,24 @@ var assert = require('assert')
 
   console.log = log
 
+}()
+
+//--stripColor
+!function () {
+    var log = console.log
+    , loggedStr
+    , cliInstance
+
+  console.log = function (string) { loggedStr = string }
+
+  cliInstance = new RECESS.Constructor(null, { cli: true })
+  cliInstance.log('hello'.red)
+  assert.equal(loggedStr, 'hello'.red, 'console.log was called with colored string')
+  cliInstance = new RECESS.Constructor(null, { cli: true, stripColors: true })
+  cliInstance.log('hello'.red)
+  assert.equal(loggedStr, 'hello', 'console.log was called with color stripped string')
+
+  console.log = log
 }()
 
 
