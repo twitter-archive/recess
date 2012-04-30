@@ -1,14 +1,17 @@
 #!/usr/bin/env node
-var RECESS = require('../lib')
-  , nopt = require('nopt')
-  , path = require('path')
-  , fs = require('fs')
+var recess = require('../lib')
+  , watch  = require('watch')
+  , nopt   = require('nopt')
+  , path   = require('path')
+  , fs     = require('fs')
   , config = '.recessrc'
+  , writeFile
   , options
+  , output
   , paths
 
 // exit with docs
-if (process.argv.length == 2) return RECESS.docs()
+if (process.argv.length == 2) return recess.docs()
 
 // define expected options
 options = {
@@ -22,6 +25,7 @@ options = {
 , noUniversalSelectors: Boolean
 , prefixWhitespace: Boolean
 , strictPropertyOrder: Boolean
+, watch: path
 , zeroUnits: Boolean
 }
 
@@ -29,7 +33,7 @@ options = {
 options = nopt(options, {}, process.argv)
 
 // if help exit
-if (options.help) return RECESS.docs()
+if (options.help) return recess.docs()
 
 // set path from remaining arguments
 paths = options.argv.remain
@@ -47,4 +51,25 @@ if (options.config || path.existsSync(config)) {
 // set CLI to true
 options.cli = true
 
-RECESS(paths, options)
+// if not watch - run Recess
+if (!options.watch) return recess(paths, options)
+
+// set CLI to false
+options.cli = false
+paths  = paths[0].split(':')
+output = paths[1]
+paths  = paths[0]
+
+// generate output and write to file
+writeFile = function () {
+  recess(paths, options, function (err, obj) {
+    fs.writeFile(output, obj.output)
+  })
+}
+
+// create monitor to watch filetree
+watch.createMonitor(options.watch, function (monitor) {
+  monitor.on("created", writeFile)
+  monitor.on("changed", writeFile)
+  monitor.on("removed", writeFile)
+})

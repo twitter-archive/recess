@@ -20,6 +20,7 @@ OPTIONS
 - --compress - compress your compiled code.
 - --config - accepts a path, which specifies a json config object
 - --stripColors - removes color from output (useful when logging)
+- --watch - watch filesystem for changes, useful when compiling Less projects
 - --noIDs - doesn't complain about using IDs in your stylesheets
 - --noJSPrefix - doesn't complain about styling `.js-` prefixed classnames
 - --noOverqualifying - doesn't complain about overqualified selectors (ie: `div#foo.bar`)
@@ -48,6 +49,12 @@ Compile and compress .less file, then output it to a new file
 
 ```CLI
 $ recess ./bootstrap.less --compress > ./bootstrap-production.css
+```
+
+Watch a directory for changes and auto compile a css file from the changes. *experimental*
+
+```CLI
+$ recess input.less:ouput.css --compile --watch watch/this/dir/for/changes
 ```
 
 PROGRAMMATIC API
