@@ -1,0 +1,9 @@
+.foo {
+  background-image: url("sprite.png");
+}
+.bar {
+  background: url('sprite.png');
+}
+.fat {
+  background: url(sprite.png);
+}
