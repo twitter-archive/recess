@@ -9,7 +9,7 @@ fs.readdirSync('test/fixtures').forEach(function (file, index) {
   	return
   }
 
-  RECESS('test/fixtures/' + file, { compile: true  }, function (err, fat) {
+  RECESS('test/fixtures/' + file, { compile: true, inlineImages: true  }, function (err, fat) {
     file = file.replace(/less$/, 'css')
     assert.ok(err == null)
     assert.ok(fat.output[0] == fs.readFileSync('test/compiled/' + file, 'utf-8'))
