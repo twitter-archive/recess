@@ -214,4 +214,30 @@ var assert = require('assert')
 
 }()
 
+//VALIDATIONS.inlineImage
+!function () {
+
+  var path = 'test/fixtures/inline-images.css'
+    , Recess = new RECESS.Constructor()
+    , validate = RECESS.Constructor.prototype.validate
+    , def
+
+  RECESS.Constructor.prototype.validate = noop
+
+  Recess.data = fs.readFileSync(path, 'utf8')
+
+  Recess.parse()
+
+  def = Recess.definitions[0]
+
+  RECESS.Constructor.RULES.inlineImages(def, Recess.data)
+
+  assert.ok(def.errors)
+  assert.equal(def.errors.length, 1, 'one error found')
+  assert.equal(def.errors[0].type, 'inlineImages')
+
+  RECESS.Constructor.prototype.validate = validate
+
+}()
+
 console.log("✓ linting".green)
