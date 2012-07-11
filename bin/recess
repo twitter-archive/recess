@@ -70,6 +70,12 @@ writeFile = function () {
   })
 }
 
+// if watch doesn't exist, watch the path
+if (!(fs.existsSync || path.existsSync)(options.watch)) options.watch = path.resolve(paths)
+
+// throw if can't find file to watch
+if (!(fs.existsSync || path.existsSync)(options.watch)) return console.log("can't find file: " + options.watch)
+
 // use fs.watch if watchign single file
 if (path.extname(options.watch)) return fs.watch(options.watch, writeFile)
 
