@@ -54,7 +54,7 @@ $ recess ./bootstrap.less --compress > ./bootstrap-production.css
 Watch a directory for changes and auto compile a css file from the changes. *experimental*
 
 ```CLI
-$ recess input.less:ouput.css --compile --watch watch/this/dir/for/changes
+$ recess input.less:ouput.css --watch watch/this/dir/for/changes
 ```
 
 PROGRAMMATIC API

@@ -54,6 +54,9 @@ options.cli = true
 // if not watch - run Recess
 if (!options.watch) return recess(paths, options)
 
+// if options watch, but compile isn't set - make it happen
+if (options.watch && !options.compile && !options.compress) options.compile = true;
+
 // set CLI to false
 options.cli = false
 paths  = paths[0].split(':')
@@ -67,7 +70,10 @@ writeFile = function () {
   })
 }
 
-// create monitor to watch filetree
+// use fs.watch if watchign single file
+if (path.extname(options.watch)) return fs.watch(options.watch, writeFile)
+
+// create monitor to watch filetree if provided dir
 watch.createMonitor(options.watch, function (monitor) {
   monitor.on("created", writeFile)
   monitor.on("changed", writeFile)
