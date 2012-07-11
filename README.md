@@ -57,6 +57,12 @@ Watch a directory for changes and auto compile a css file from the changes. *exp
 $ recess input.less:ouput.css --watch watch/this/dir/for/changes
 ```
 
+Watch a single file for changes and auto compile a css file from the changes. *experimental*
+
+```CLI
+$ recess input.less:ouput.css --watch
+```
+
 PROGRAMMATIC API
 ----------------
 
