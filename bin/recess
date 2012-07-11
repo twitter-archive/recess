@@ -42,7 +42,7 @@ paths = options.argv.remain
 delete options.argv
 
 // check for config or default .recessrc
-if (options.config || path.existsSync(config)) {
+if (options.config || (fs.existsSync || path.existsSync)(config)) {
   config = JSON.parse(fs.readFileSync(options.config || config))
   for (i in options) config[i] = options[i]
   options = config
