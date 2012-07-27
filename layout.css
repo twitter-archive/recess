@@ -239,7 +239,8 @@ html, body {
   background: rgba(10, 5, 5, 0.7);
 }
 
-.masthead .photo img {
+.masthead .photo {
+  background: #111;
   max-width: 100%;
   min-height: 100%;
 }
