@@ -18,9 +18,11 @@ options = {
   compile: Boolean
 , compress: Boolean
 , config: path
+, format: String
 , noIDs: Boolean
 , noJSPrefix: Boolean
 , noOverqualifying: Boolean
+, noSummary: Boolean
 , noUnderscores: Boolean
 , noUniversalSelectors: Boolean
 , prefixWhitespace: Boolean
