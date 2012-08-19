@@ -214,4 +214,21 @@ var assert = require('assert')
 
 }()
 
+// Cannot read property 'red' of undefined
+!function () {
+
+  var Recess = new RECESS.Constructor()
+    , validate = RECESS.Constructor.prototype.validate
+
+  RECESS.Constructor.prototype.validate = noop
+
+  Recess.data = ".foo { background:green;; }"
+
+  Recess.parse()
+
+  assert.notEqual(Recess.output[0], '\u001b[31mParse error\u001b[39m: Cannot read property \'red\' of undefined on line 1');
+  RECESS.Constructor.prototype.validate = validate
+
+}()
+
 console.log("✓ linting".green)

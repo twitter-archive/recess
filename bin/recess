@@ -25,15 +25,21 @@ options = {
 , noUniversalSelectors: Boolean
 , prefixWhitespace: Boolean
 , strictPropertyOrder: Boolean
+, version: Boolean
 , watch: path
 , zeroUnits: Boolean
 }
 
 // parse options
-options = nopt(options, {}, process.argv)
+shorthand = { 'v': ['--version'] };
+options = nopt(options, shorthand, process.argv)
 
 // if help exit
 if (options.help) return recess.docs()
+
+// set version
+recess.version = require(path.join(__dirname, '..', 'package.json')).version
+if (options.version) return console.log(recess.version)
 
 // set path from remaining arguments
 paths = options.argv.remain
@@ -42,7 +48,7 @@ paths = options.argv.remain
 delete options.argv
 
 // check for config or default .recessrc
-if (options.config || path.existsSync(config)) {
+if (options.config || (fs.existsSync || path.existsSync)(config)) {
   config = JSON.parse(fs.readFileSync(options.config || config))
   for (i in options) config[i] = options[i]
   options = config
@@ -50,6 +56,7 @@ if (options.config || path.existsSync(config)) {
 
 // set CLI to true
 options.cli = true
+
 
 // if not watch - run Recess
 if (!options.watch) return recess(paths, options)
