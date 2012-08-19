@@ -26,6 +26,7 @@ OPTIONS
 - --noOverqualifying - doesn't complain about overqualified selectors (ie: `div#foo.bar`)
 - --noUnderscores - doesn't complain about using underscores in your class names
 - --noUniversalSelectors - doesn't complain about using the universal `*` selector
+- --prefixWhitespace - adds whitespace prefix to line up vender prefixed properties
 - --strictPropertyOrder - doesn't looking into your property ordering
 - --zeroUnits - doesn't complain if you add units to values of 0
 
@@ -54,7 +55,13 @@ $ recess ./bootstrap.less --compress > ./bootstrap-production.css
 Watch a directory for changes and auto compile a css file from the changes. *experimental*
 
 ```CLI
-$ recess input.less:ouput.css --compile --watch watch/this/dir/for/changes
+$ recess input.less:ouput.css --watch watch/this/dir/for/changes
+```
+
+Watch a single file for changes and auto compile a css file from the changes. *experimental*
+
+```CLI
+$ recess input.less:ouput.css --watch
 ```
 
 PROGRAMMATIC API
@@ -83,6 +90,7 @@ The following options (and defaults) are available in the programatic api:
 - noUniversalSelectors: true
 - prefixWhitespace: true
 - strictPropertyOrder: true
+- stripColors: false
 - zeroUnits: true
 
 The callback is fired when each instance has finished processessing an input. The callback is passed an array of of instances (one for each path). The instances have a bunch of useful things on them like the raw data and an array of output strings.

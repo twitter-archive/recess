@@ -61,6 +61,9 @@ options.cli = true
 // if not watch - run Recess
 if (!options.watch) return recess(paths, options)
 
+// if options watch, but compile isn't set - make it happen
+if (options.watch && !options.compile && !options.compress) options.compile = true;
+
 // set CLI to false
 options.cli = false
 paths  = paths[0].split(':')
@@ -74,7 +77,16 @@ writeFile = function () {
   })
 }
 
-// create monitor to watch filetree
+// if watch doesn't exist, watch the path
+if (!(fs.existsSync || path.existsSync)(options.watch)) options.watch = path.resolve(paths)
+
+// throw if can't find file to watch
+if (!(fs.existsSync || path.existsSync)(options.watch)) return console.log("can't find file: " + options.watch)
+
+// use fs.watch if watchign single file
+if (path.extname(options.watch)) return fs.watch(options.watch, writeFile)
+
+// create monitor to watch filetree if provided dir
 watch.createMonitor(options.watch, function (monitor) {
   monitor.on("created", writeFile)
   monitor.on("changed", writeFile)
