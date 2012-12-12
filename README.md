@@ -19,6 +19,7 @@ OPTIONS
 - --compile - compiles your code and outputs it to the terminal. Fixes white space and sort order. Can compile css or less.
 - --compress - compress your compiled code.
 - --config - accepts a path, which specifies a json config object
+- --includePath - accepts an additional directory path to look for `@import`:ed LESS files in.
 - --stripColors - removes color from output (useful when logging)
 - --watch - watch filesystem for changes, useful when compiling Less projects
 - --noIDs - doesn't complain about using IDs in your stylesheets
@@ -83,6 +84,7 @@ The following options (and defaults) are available in the programatic api:
 
 - compile: false
 - compress: false
+- includePath: []
 - noIDs: true
 - noJSPrefix: true
 - noOverqualifying: true

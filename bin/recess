@@ -18,6 +18,7 @@ options = {
   compile: Boolean
 , compress: Boolean
 , config: path
+, includePath: [path, Array]
 , noIDs: Boolean
 , noJSPrefix: Boolean
 , noOverqualifying: Boolean
