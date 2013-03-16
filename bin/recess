@@ -24,6 +24,7 @@ options = {
 , noUnderscores: Boolean
 , noUniversalSelectors: Boolean
 , prefixWhitespace: Boolean
+, report: String
 , strictPropertyOrder: Boolean
 , version: Boolean
 , watch: path
