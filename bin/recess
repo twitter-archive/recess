@@ -59,7 +59,13 @@ options.cli = true
 
 
 // if not watch - run Recess
-if (!options.watch) return recess(paths, options)
+if (!options.watch) return recess(paths, options, function (err, instances) {
+  var fails = instances.reduce(function (prev, inst) {
+    return prev + inst.fails;
+  }, 0)
+
+  process.exit(err || fails ? 1 : 0);
+})
 
 // if options watch, but compile isn't set - make it happen
 if (options.watch && !options.compile && !options.compress) options.compile = true;
