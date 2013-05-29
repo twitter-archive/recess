@@ -27,7 +27,7 @@ OPTIONS
 - --noUnderscores - doesn't complain about using underscores in your class names
 - --noUniversalSelectors - doesn't complain about using the universal `*` selector
 - --prefixWhitespace - adds whitespace prefix to line up vender prefixed properties
-- --strictPropertyOrder - doesn't looking into your property ordering
+- --strictPropertyOrder - doesn't look into your property ordering
 - --zeroUnits - doesn't complain if you add units to values of 0
 
 
