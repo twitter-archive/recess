@@ -104,6 +104,7 @@
   <ul>
     <li>&raquo; <strong>help</strong> - provides a quick cli cheatsheet</li>
     <li>&raquo; <strong>compile</strong> - outputs your compiled source</li>
+    <li>&raquo; <strong>includePath</strong> - additional directory to look in for relative LESS imports (repeat for each additional directory)</li>
     <li>&raquo; <strong>compress</strong> - outputs your compiled source, but minified</li>
     <li>&raquo; <strong>watch</strong> - watch a directory and automatically compile a file when changes occur</li>
   </ul>
@@ -116,42 +117,14 @@
 
  <pre>
 {
-  "noIDs": false
+  "includePath": ["imports"]
+, "noIDs": false
 , "noJSPrefix": false
 , "noUniversalSelectors": false
 }
 </pre>
 
   <p>By default, if no <code>--config</code> path is provided, RECESS will check for a local <code>.recessrc</code> file.
-
-  <hr>
-
-  <h4 id="include-path">Using an include path when compiling LESS</h4>
-  <p>You can customize where RECESS looks for files when using <strong>@import</strong> in your LESS files, by using the <code>--includePath</code> option (similar to how <code>--include-path</code> works with <strong>lessc</strong>). For example, if you have the following directory structure:</p>
-
-<pre>
-imports/
-  import.less
-application.less
-</pre>
-
-  <p>You can import <code>import.less</code> in <code>application.less</code> with a simple <code>@import "import.less";</code> by using the <strong>includePath</strong> option</p>
-
-  <pre>$ RECESS --includePath=imports --compile application.less</pre>
-
-  <p>More than one directory can be specified:</p>
-
-  <pre>$ RECESS --includePath=imports --includePath=imports2 application.less</pre>
-
-  <p>Or, in <code>.recessrc</code></p>
-
-<pre>
-{
-  "includePath": ["imports", "imports2"]
-}
-</pre>
-
-  <p>If you have a file named <strong>import.less</strong> in the same directory as <strong>application.less</strong>, it will be favored over any file from a directory in <strong>includePath</strong>. You could, for example, add your favorite framework to your <strong>includePath</strong>, and copy the sources you want to override to your main folder.</p>
 
   <hr>
 
