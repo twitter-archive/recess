@@ -104,6 +104,7 @@
   <ul>
     <li>&raquo; <strong>help</strong> - provides a quick cli cheatsheet</li>
     <li>&raquo; <strong>compile</strong> - outputs your compiled source</li>
+    <li>&raquo; <strong>includePath</strong> - additional directory to look in for relative LESS imports (repeat for each additional directory)</li>
     <li>&raquo; <strong>compress</strong> - outputs your compiled source, but minified</li>
     <li>&raquo; <strong>watch</strong> - watch a directory and automatically compile a file when changes occur</li>
   </ul>
@@ -116,13 +117,14 @@
 
  <pre>
 {
-  "noIDs": false
+  "includePath": ["imports"]
+, "noIDs": false
 , "noJSPrefix": false
 , "noUniversalSelectors": false
 }
 </pre>
 
-<p>By default, if no <code>--config</code> path is provided, RECESS will check for a local <code>.recessrc</code> file.
+  <p>By default, if no <code>--config</code> path is provided, RECESS will check for a local <code>.recessrc</code> file.
 
   <hr>
 
@@ -133,6 +135,7 @@
   <ul>
     <li>&raquo; <strong>compile</strong> - false</li>
     <li>&raquo; <strong>compress</strong> - false</li>
+    <li>&raquo; <strong>includePath</strong> - []</li>
     <li>&raquo; <strong>noIDs</strong> - true</li>
     <li>&raquo; <strong>noJSPrefix</strong> - true</li>
     <li>&raquo; <strong>noOverqualifying</strong> - true</li>
