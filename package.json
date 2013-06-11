@@ -1,6 +1,6 @@
 { "name": "recess"
 , "description": "A simple, attractive code quality tool for CSS built on top of LESS"
-, "version": "1.1.6"
+, "version": "1.1.7"
 , "author": "Jacob Thornton <jacob@twitter.com> (https://github.com/fat)"
 , "repository": { "type": "git", "url": "git://github.com/twitter/recess.git" }
 , "keywords": ["css", "lint"]
