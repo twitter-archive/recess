@@ -258,4 +258,17 @@ var assert = require('assert')
 
 }()
 
+// Keep order of input paths
+!function () {
+
+  RECESS([
+    'test/fixtures/blog.css',
+    'test/fixtures/inline-images.css'
+  ], function (err, instance) {
+    assert(instance[0].path === 'test/fixtures/blog.css');
+  })
+
+}()
+
+
 console.log("✓ linting".green)
