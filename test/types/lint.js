@@ -231,6 +231,24 @@ var assert = require('assert')
 
 }()
 
+// Cannot read property 'red' of undefined
+!function () {
+
+  var Recess = new RECESS.Constructor()
+    , validate = RECESS.Constructor.prototype.validate
+
+  RECESS.Constructor.prototype.validate = noop
+
+  Recess.data = ".foo { background:green;; }"
+
+  Recess.parse()
+
+  assert.notEqual(Recess.output[0], '\u001b[31mParse error\u001b[39m: Cannot read property \'red\' of undefined on line 1');
+
+  RECESS.Constructor.prototype.validate = validate
+
+}()
+
 //VALIDATIONS.inlineImage
 !function () {
 
@@ -264,5 +282,18 @@ var assert = require('assert')
   RECESS.Constructor.prototype.validate = validate
 
 }()
+
+// Keep order of input paths
+!function () {
+
+  RECESS([
+    'test/fixtures/blog.css',
+    'test/fixtures/inline-images.css'
+  ], function (err, instance) {
+    assert(instance[0].path === 'test/fixtures/blog.css');
+  })
+
+}()
+
 
 console.log("✓ linting".green)

@@ -23,6 +23,7 @@ OPTIONS
   - --format text - the default format, shows errors and context
   - --format compact - show errors one-error-per-line, useful for IDE integration
 - --noSummary - don't output the summary block for each file
+- --includePath - accepts an additional directory path to look for `@import`:ed LESS files in.
 - --stripColors - removes color from output (useful when logging)
 - --watch - watch filesystem for changes, useful when compiling Less projects
 - --noIDs - doesn't complain about using IDs in your stylesheets
@@ -93,6 +94,7 @@ The following options (and defaults) are available in the programatic api:
 
 - compile: false
 - compress: false
+- includePath: []
 - noIDs: true
 - noJSPrefix: true
 - noOverqualifying: true
