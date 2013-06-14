@@ -25,6 +25,7 @@ options = {
 , noUnderscores: Boolean
 , noUniversalSelectors: Boolean
 , prefixWhitespace: Boolean
+, quiet: Boolean
 , strictPropertyOrder: Boolean
 , version: Boolean
 , watch: path
