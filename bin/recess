@@ -29,6 +29,7 @@ options = {
 , version: Boolean
 , watch: path
 , zeroUnits: Boolean
+, dataUri:[String,Boolean]
 }
 
 // parse options
