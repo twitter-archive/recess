@@ -75,8 +75,8 @@ paths  = paths[0]
 
 // generate output and write to file
 writeFile = function () {
-  recess(paths, options, function (err, obj) {
-    fs.writeFile(output, obj.output)
+  recess(paths, options, function (err, instances) {
+    fs.writeFile(output, instances[0].output[0])
   })
 }
 
