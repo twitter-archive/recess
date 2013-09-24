@@ -1,11 +1,8 @@
 Given(/^the input file contains the following CSS$/) do |string|
-  pending # express the regexp above with the code you wish you had
+  @input_file = Tempfile.new('junit-test-css')
+  @input_file.write(string)
 end
 
 Given(/^I run recess with "(.*?)" parameters$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
-Then(/^it should generate "(.*?)" file$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+  @stdout = `../bin/recess #{@input_file.path} #{arg1}`
 end

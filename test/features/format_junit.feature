@@ -21,6 +21,6 @@ a {
     And I run recess with "--format junit" parameters
 
     Then output should be in jUnit format
-    And generated jUnit report should contain 2 failures
-    And failure #1 should be "Element selectors should not be overqualified" in line 5
-    And failure #2 should be "Incorrect property order" in line 6
+    And generated jUnit report should contain 2 errors
+    And error #1 should be "Element selectors should not be overqualified" in line 5
+    And error #2 should be "Incorrect property order" in line 6

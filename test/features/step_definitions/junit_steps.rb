@@ -1,11 +1,23 @@
 Then(/^output should be in jUnit format$/) do
-  pending # express the regexp above with the code you wish you had
+  xsd = Nokogiri::XML::Schema(File.read(path_to_junit_xsd))
+  doc = Nokogiri::XML(@stdout)
+  expect(xsd.valid?(doc)).to be_true, <<EOF
+=== jUnit.xsd validation failed for the following output: ===
+#{@stdout}
+=============================================================
+EOF
 end
 
-Then(/^generated jUnit report should contain (\d+) failures$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then(/^generated jUnit report should contain (\d+) errors$/) do |num_errors|
+  doc = Nokogiri::XML(@stdout)
+  expect(doc.xpath("count(//error)").to_i).to eq num_errors.to_i
 end
 
-Then(/^failure \#(\d+) should be "(.*?)" in line (\d+)$/) do |arg1, arg2, arg3|
-  pending # express the regexp above with the code you wish you had
+Then(/^error \#(\d+) should be "(.*?)" in line (\d+)$/) do |error_number, name, line|
+  doc = Nokogiri::XML(@stdout)
+  error = doc.xpath("//error")[error_number.to_i - 1]
+
+  expect(error).to_not be_nil
+  expect(error.attr("message")).to match name
+  expect(error.attr("message")).to match /line #{line}/
 end
