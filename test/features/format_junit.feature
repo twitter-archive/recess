@@ -1,6 +1,6 @@
 Feature: jUnit output format
 
-  In order do simplify integration with CI servers
+  In order to simplify integration with CI servers
   As a developer
   I want to be able to generate test results in jUnit XML format understood by CI servers
 

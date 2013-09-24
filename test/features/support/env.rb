@@ -1,3 +1,4 @@
+require 'tempfile'
 require 'nokogiri'
 require 'rspec/expectations'
 
