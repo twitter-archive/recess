@@ -35,3 +35,5 @@ nbproject
 
 #node modules
 node_modules
+
+Gemfile.lock
