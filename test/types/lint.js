@@ -1,5 +1,6 @@
 var assert = require('assert')
   , RECESS = require('../../lib')
+  , Logger = require('../../lib/logger')
   , colors = require('colors')
   , fs = require('fs')
   , noop = function () {}
@@ -15,13 +16,16 @@ var assert = require('assert')
 
   console.log = function (string) { loggedStr = string }
 
-  withOutCompile = new RECESS.Constructor(null, { cli: true })
+  var options = { cli: true }
+  withOutCompile = new RECESS.Constructor(null, options, new Logger(options))
   withOutCompile.log('first')
   assert.equal(loggedStr, 'first', 'console.log was not called when compile was true')
-  withCompile = new RECESS.Constructor(false, { compile: true, cli: true})
+
+  options = { compile: true, cli: true};
+  withCompile = new RECESS.Constructor(false, options, new Logger(options))
   withCompile.log('second')
   assert.equal(loggedStr, 'first', 'console.log was not called when compile was true')
-  withCompile.log('third', true)
+  withCompile.logForce('third')
   assert.equal(loggedStr, 'third', 'console.log was called when force was was true')
 
   console.log = log
@@ -36,10 +40,13 @@ var assert = require('assert')
 
   console.log = function (string) { loggedStr = string }
 
-  cliInstance = new RECESS.Constructor(null, { cli: true })
+  var options = { cli: true }
+  cliInstance = new RECESS.Constructor(null, options, new Logger(options))
   cliInstance.log('hello'.red)
   assert.equal(loggedStr, 'hello'.red, 'console.log was called with colored string')
-  cliInstance = new RECESS.Constructor(null, { cli: true, stripColors: true })
+
+  var options = { cli: true, stripColors: true }
+  cliInstance = new RECESS.Constructor(null, options, new Logger(options))
   cliInstance.log('hello'.red)
   assert.equal(loggedStr, 'hello', 'console.log was called with color stripped string')
 
@@ -51,7 +58,7 @@ var assert = require('assert')
 !function () {
 
   var path = 'test/fixtures/property-order.css'
-    , Recess = new RECESS.Constructor()
+    , Recess = new RECESS.Constructor(null, {}, new Logger({}))
     , validate = RECESS.Constructor.prototype.validate
 
   RECESS.Constructor.prototype.validate = noop
@@ -83,7 +90,7 @@ var assert = require('assert')
 !function () {
 
   var path = 'test/fixtures/no-JS.css'
-    , Recess = new RECESS.Constructor()
+    , Recess = new RECESS.Constructor(null, {}, new Logger({}))
     , validate = RECESS.Constructor.prototype.validate
     , lines = [7, 8, 16, 16, 21, 21]
 
@@ -116,7 +123,7 @@ var assert = require('assert')
 !function () {
 
   var path = 'test/fixtures/no-IDs.css'
-    , Recess = new RECESS.Constructor()
+    , Recess = new RECESS.Constructor(null, {}, new Logger({}))
     , validate = RECESS.Constructor.prototype.validate
     , lines = [1, 7, 13]
 
@@ -145,7 +152,7 @@ var assert = require('assert')
 !function () {
 
   var path = 'test/fixtures/no-underscores.css'
-    , Recess = new RECESS.Constructor()
+    , Recess = new RECESS.Constructor(null, {}, new Logger({}))
     , validate = RECESS.Constructor.prototype.validate
     , lines = [1, 6, 6]
 
@@ -174,7 +181,7 @@ var assert = require('assert')
 !function () {
 
   var path = 'test/fixtures/universal-selectors.css'
-    , Recess = new RECESS.Constructor()
+    , Recess = new RECESS.Constructor(null, {}, new Logger({}))
     , validate = RECESS.Constructor.prototype.validate
     , counts = [1, 3, 1]
     , lines = [1, 5, 6, 7, 11]
@@ -205,7 +212,7 @@ var assert = require('assert')
 !function () {
 
   var path = 'test/fixtures/no-overqualifying.css'
-    , Recess = new RECESS.Constructor()
+    , Recess = new RECESS.Constructor(null, {}, new Logger({}))
     , validate = RECESS.Constructor.prototype.validate
     , counts = [1, 2]
     , lines = [1, 7, 8]
@@ -234,7 +241,7 @@ var assert = require('assert')
 // Cannot read property 'red' of undefined
 !function () {
 
-  var Recess = new RECESS.Constructor()
+  var Recess = new RECESS.Constructor(null, {}, new Logger({}))
     , validate = RECESS.Constructor.prototype.validate
 
   RECESS.Constructor.prototype.validate = noop
@@ -253,7 +260,7 @@ var assert = require('assert')
 !function () {
 
   var path = 'test/fixtures/inline-images.css'
-    , Recess = new RECESS.Constructor()
+    , Recess = new RECESS.Constructor(null, {}, new Logger({}))
     , validate = RECESS.Constructor.prototype.validate
     , counts = [1, 1, 1, 0]
     , lines = [2, 5, 8]
@@ -297,3 +304,9 @@ var assert = require('assert')
 
 
 console.log("✓ linting".green)
+
+/*
+ * Local Variables:
+ * js-indent-level: 2
+ * End:
+ */
