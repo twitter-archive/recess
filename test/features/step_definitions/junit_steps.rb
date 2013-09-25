@@ -21,3 +21,28 @@ Then(/^error \#(\d+) should be "(.*?)" in line (\d+)$/) do |error_number, name, 
   expect(error.attr("message")).to match name
   expect(error.attr("message")).to match /line #{line}/
 end
+
+Then(/^generated jUnit report should contain (\d+) testcases?$/) do |num_cases|
+  doc = Nokogiri::XML(@stdout)
+  expect(doc.xpath("count(//testcase)").to_i).to eq num_cases.to_i
+end
+
+Then(/^error \#(\d+) should be "(.*?)" in first file line (\d+)$/) do |error_number, name, line|
+  doc = Nokogiri::XML(@stdout)
+  error = doc.xpath("//error")[error_number.to_i - 1]
+
+  expect(error).to_not be_nil
+  expect(error.attr("message")).to match name
+  expect(error.attr("message")).to match /line #{line}/
+  expect(error.parent().attr("name")).to eq @input_file_1.path
+end
+
+Then(/^error \#(\d+) should be "(.*?)" in second file line (\d+)$/) do |error_number, name, line|
+  doc = Nokogiri::XML(@stdout)
+  error = doc.xpath("//error")[error_number.to_i - 1]
+
+  expect(error).to_not be_nil
+  expect(error.attr("message")).to match name
+  expect(error.attr("message")).to match /line #{line}/
+  expect(error.parent().attr("name")).to eq @input_file_2.path
+end
