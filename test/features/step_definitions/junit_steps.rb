@@ -8,7 +8,7 @@ Then(/^output should be in jUnit format$/) do
 EOF
 end
 
-Then(/^generated jUnit report should contain (\d+) errors$/) do |num_errors|
+Then(/^generated jUnit report should contain (\d+) errors?$/) do |num_errors|
   doc = Nokogiri::XML(@stdout)
   expect(doc.xpath("count(//error)").to_i).to eq num_errors.to_i
 end
