@@ -34,6 +34,7 @@ OPTIONS
 - --prefixWhitespace - adds whitespace prefix to line up vender prefixed properties
 - --strictPropertyOrder - doesn't looking into your property ordering
 - --zeroUnits - doesn't complain if you add units to values of 0
+- --maxNestingLevel <level> - show errors if nesting is found above set level
 
 
 EXAMPLES
@@ -55,6 +56,12 @@ Lint file with compact output and no color
 
 ```CLI
 $ recess ./bootstrap.css --format compact --stripColors
+```
+
+Lint file, erroring on rules that nested deeper than 3 levels (ie `.one .two. three .four { ... }`)
+
+```CLI
+$ recess ./bootstrap.css --maxNestingLevel 3
 ```
 
 Compile and compress .less file, then output it to a new file
