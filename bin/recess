@@ -31,7 +31,7 @@ options = {
 , version: Boolean
 , watch: path
 , zeroUnits: Boolean
-, maxIndent: Number
+, maxNestingLevel: Number
 }
 
 // parse options
