@@ -283,10 +283,10 @@ var assert = require('assert')
 
 }()
 
-// //VALIDATIONS.maxIndent
+// //VALIDATIONS.maxNestingLevel
 !function () {
 
-  var path = 'test/fixtures/max-indent.css'
+  var path = 'test/fixtures/max-nesting-level.css'
     , Recess = new RECESS.Constructor()
     , validate = RECESS.Constructor.prototype.validate
     , counts = [0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0]
@@ -299,13 +299,13 @@ var assert = require('assert')
   Recess.parse()
 
   Recess.definitions.forEach(function (def) {
-    RECESS.Constructor.RULES.maxIndent(def, Recess.data, 3)
+    RECESS.Constructor.RULES.maxNestingLevel(def, Recess.data, 3)
 
     if (counts[0]) {
       assert.ok(def.errors)
       assert.equal(def.errors.length, counts.shift(), 'Correct error count found')
       def.errors.forEach(function (error) {
-        assert.equal(def.errors[0].type, 'max indent')
+        assert.equal(def.errors[0].type, 'max nesting level')
         assert.equal(error.line, lines.shift(), 'Correct line number reported')
       })
     } else {
