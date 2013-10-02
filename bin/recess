@@ -20,6 +20,8 @@ options = {
 , config: path
 , format: String
 , includePath: [path, Array]
+, urlRootPath: String
+, relativeUrls: Boolean
 , noIDs: Boolean
 , noJSPrefix: Boolean
 , noOverqualifying: Boolean

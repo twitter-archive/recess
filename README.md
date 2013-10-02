@@ -24,6 +24,8 @@ OPTIONS
   - --format compact - show errors one-error-per-line, useful for IDE integration
 - --noSummary - don't output the summary block for each file
 - --includePath - accepts an additional directory path to look for `@import`:ed LESS files in.
+- --urlRootPath - adds a base path to every url.
+- --relativeUrls - rewrites urls to be relative to the entry file.
 - --stripColors - removes color from output (useful when logging)
 - --watch - watch filesystem for changes, useful when compiling Less projects
 - --noIDs - doesn't complain about using IDs in your stylesheets
