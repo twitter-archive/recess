@@ -1,0 +1,44 @@
+
+.one {
+  font-size: 12px;
+}
+
+.one .two {
+  font-size: 12px;
+}
+
+.one .two .three {
+  font-size: 12px;
+}
+
+.one .two .three .four {
+  border: 1px solid black;
+}
+
+.one > .two .three .four {
+  border: 1px solid black;
+}
+
+.one + .two .three .four {
+  border: 1px solid black;
+}
+
+.one ~ .two ~ .three .four {
+  border: 1px solid black;
+}
+
+.one.two.three.four {
+  border: 1px solid black;
+}
+
+.one .two .three .four[href="pizza"] {
+  border: 1px solid black;
+}
+
+a.one span.two div.three .four[href="pizza"] {
+  border: 1px solid black;
+}
+
+a.one div.two .three[href="pizza"] {
+  border: 1px solid black;
+}

@@ -283,6 +283,41 @@ var assert = require('assert')
 
 }()
 
+// //VALIDATIONS.maxNestingLevel
+!function () {
+
+  var path = 'test/fixtures/max-nesting-level.css'
+    , Recess = new RECESS.Constructor()
+    , validate = RECESS.Constructor.prototype.validate
+    , counts = [0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0]
+    , lines = [14, 18, 34, 38]
+
+  RECESS.Constructor.prototype.validate = noop
+
+  Recess.data = fs.readFileSync(path, 'utf8')
+
+  Recess.parse()
+
+  Recess.definitions.forEach(function (def) {
+    RECESS.Constructor.RULES.maxNestingLevel(def, Recess.data, 3)
+
+    if (counts[0]) {
+      assert.ok(def.errors)
+      assert.equal(def.errors.length, counts.shift(), 'Correct error count found')
+      def.errors.forEach(function (error) {
+        assert.equal(def.errors[0].type, 'max nesting level')
+        assert.equal(error.line, lines.shift(), 'Correct line number reported')
+      })
+    } else {
+      counts.shift()
+      assert.ok(!def.errors)
+    }
+  })
+
+  RECESS.Constructor.prototype.validate = validate
+
+}()
+
 // Keep order of input paths
 !function () {
 
