@@ -1,20 +1,27 @@
-var fs = require('fs')
-  , assert = require('assert')
-  , colors = require('colors')
-  , RECESS = require('../../lib')
+var fs = require('fs');
+var assert = require('assert');
+var chalk = require('chalk');
+var RECESS = require('../../lib');
 
-fs.readdirSync('test/fixtures').forEach(function (file, index) {
-  // Ignore anything not a less/css file.
-  if (file.indexOf('css') === -1 && file.indexOf('less') === -1) {
-    return
-  }
 
-  RECESS('test/fixtures/' + file, { compile: true, inlineImages: true  }, function (err, fat) {
-    var file2 = file.replace(/less$/, 'css')
-    assert.ok(err == null)
-    assert.ok(fat[0].output[0] == fs.readFileSync('test/expected/' + file2, 'utf-8'), file2 + " should be compiled from " + file)
-  })
+// Ignore anything not a less/css file.
+var isValidExtension = function(str) {
+  return /\.less$|\.css$/.test(str);
+};
 
-})
 
-console.log("✓ compiling".green)
+fs.readdirSync('test/fixtures').forEach(function (filepath, index) {
+  if (!isValidExtension(filepath)) {return;}
+
+  RECESS('test/fixtures/' + filepath, {
+    compile: true,
+    inlineImages: true
+  }, function (err, fat) {
+    var file2 = filepath.replace(/less$/, 'css');
+    console.log(err)
+    assert.ok(err === null);
+    assert.ok(fat[0].output[0] === fs.readFileSync('test/expected/' + file2, 'utf8'), file2 + ' should be compiled from ' + filepath);
+  });
+});
+
+console.log(chalk.green('\u2713 compiling'));
