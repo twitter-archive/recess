@@ -10,9 +10,9 @@ fs.readdirSync('test/fixtures').forEach(function (file, index) {
   }
 
   RECESS('test/fixtures/' + file, { compile: true, inlineImages: true  }, function (err, fat) {
-    file = file.replace(/less$/, 'css')
+    var file2 = file.replace(/less$/, 'css')
     assert.ok(err == null)
-    assert.ok(fat[0].output[0] == fs.readFileSync('test/compiled/' + file, 'utf-8'))
+    assert.ok(fat[0].output[0] == fs.readFileSync('test/compiled/' + file2, 'utf-8'), file2 + " should be compiled from " + file)
   })
 
 })
