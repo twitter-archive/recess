@@ -1,6 +1,6 @@
 var fs = require('fs');
 var assert = require('assert');
-var colors = require('colors');
+var chalk = require('chalk');
 var RECESS = require('../../lib');
 var noop = function () {};
 
@@ -42,13 +42,13 @@ var noop = function () {};
   cliInstance = new RECESS.Constructor(null, {
     cli: true
   });
-  cliInstance.log('hello'.red);
-  assert.equal(loggedStr, 'hello'.red, 'console.log was called with colored string');
+  cliInstance.log(chalk.red('hello'));
+  assert.equal(loggedStr, chalk.red('hello'), 'console.log was called with colored string');
   cliInstance = new RECESS.Constructor(null, {
     cli: true,
     stripColors: true
   });
-  cliInstance.log('hello'.red);
+  cliInstance.log(chalk.red('hello'));
   assert.equal(loggedStr, 'hello', 'console.log was called with color stripped string');
   console.log = log;
 }();
@@ -61,15 +61,13 @@ var noop = function () {};
 
 
 !function () {
-  var path = 'test/fixtures/property-order.css',
-
-    Recess = new RECESS.Constructor(),
-    validate = RECESS.Constructor.prototype.validate;
+  var path = 'test/fixtures/property-order.css';
+  var Recess = new RECESS.Constructor();
+  var validate = RECESS.Constructor.prototype.validate;
 
   RECESS.Constructor.prototype.validate = noop;
 
   Recess.data = fs.readFileSync(path, 'utf8');
-
   Recess.parse();
 
   RECESS.Constructor.RULES.strictPropertyOrder(Recess.definitions[0], Recess.data);
@@ -103,11 +101,9 @@ var noop = function () {};
   RECESS.Constructor.prototype.validate = noop;
 
   Recess.data = fs.readFileSync(path, 'utf8');
-
   Recess.parse();
 
   Recess.definitions.forEach(function (def) {
-
     RECESS.Constructor.RULES.noJSPrefix(def, Recess.data);
     assert.ok(def.errors);
     assert.equal(def.errors.length, 2, 'one error found');
@@ -134,11 +130,9 @@ var noop = function () {};
   RECESS.Constructor.prototype.validate = noop;
 
   Recess.data = fs.readFileSync(path, 'utf8');
-
   Recess.parse();
 
   Recess.definitions.forEach(function (def) {
-
     RECESS.Constructor.RULES.noIDs(def, Recess.data);
     assert.ok(def.errors);
     assert.equal(def.errors.length, 1, 'one error found');
@@ -163,11 +157,9 @@ var noop = function () {};
   RECESS.Constructor.prototype.validate = noop;
 
   Recess.data = fs.readFileSync(path, 'utf8');
-
   Recess.parse();
 
   Recess.definitions.forEach(function (def) {
-
     RECESS.Constructor.RULES.noUnderscores(def, Recess.data);
     assert.ok(def.errors);
     assert.equal(def.errors.length, 1, 'one error found');
@@ -193,11 +185,9 @@ var noop = function () {};
   RECESS.Constructor.prototype.validate = noop;
 
   Recess.data = fs.readFileSync(path, 'utf8');
-
   Recess.parse();
 
   Recess.definitions.forEach(function (def) {
-
     RECESS.Constructor.RULES.noUniversalSelectors(def, Recess.data);
     assert.ok(def.errors);
     assert.equal(def.errors.length, counts.shift(), 'Correct error count found');
@@ -225,11 +215,9 @@ var noop = function () {};
   RECESS.Constructor.prototype.validate = noop;
 
   Recess.data = fs.readFileSync(path, 'utf8');
-
   Recess.parse();
 
   Recess.definitions.forEach(function (def) {
-
     RECESS.Constructor.RULES.noOverqualifying(def, Recess.data);
     assert.ok(def.errors);
     assert.equal(def.errors.length, counts.shift(), 'Correct error count found');
@@ -242,6 +230,7 @@ var noop = function () {};
   RECESS.Constructor.prototype.validate = validate;
 }();
 
+
 // Cannot read property 'red' of undefined
 !function () {
   var Recess = new RECESS.Constructor();
@@ -250,8 +239,8 @@ var noop = function () {};
   RECESS.Constructor.prototype.validate = noop;
 
   Recess.data = '.foo { background:green;; }';
-
   Recess.parse();
+
   assert.notEqual(Recess.output[0], '\x1b[31mParse error\x1b[39m: Cannot read property \'red\' of undefined on line 1');
 
   RECESS.Constructor.prototype.validate = validate;
@@ -272,11 +261,9 @@ var noop = function () {};
   RECESS.Constructor.prototype.validate = noop;
 
   Recess.data = fs.readFileSync(path, 'utf8');
-
   Recess.parse();
 
   Recess.definitions.forEach(function (def) {
-
     RECESS.Constructor.RULES.inlineImages(def, Recess.data);
     if (counts[0]) {
       assert.ok(def.errors);
@@ -304,11 +291,9 @@ var noop = function () {};
   var validate = RECESS.Constructor.prototype.validate;
   var def;
 
-
   RECESS.Constructor.prototype.validate = noop;
 
   Recess.data = fs.readFileSync(path, 'utf8');
-
   Recess.parse();
   def = Recess.definitions[0];
 
