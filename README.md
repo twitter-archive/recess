@@ -112,13 +112,15 @@ When compiling, access the compiled source through the output property:
 ```js
 var recess = require('recess')
 
-recess('./js/fat.css', { compile: true }, function (err, obj) {
+recess('./js/fat.css', { compile: true }, function (err, instances) {
   if (err) throw err
-  console.log(
-  	obj // recess instance for fat.css
-  , obj.output // array of loggable content
-  , obj.errors // array of failed lint rules
-  )
+  instances.forEach(function(obj){
+    console.log(
+      obj // recess instance for fat.css
+      , obj.output // array of loggable content
+      , obj.errors // array of failed lint rules
+    )
+  })
 })
 ```
 
