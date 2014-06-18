@@ -283,6 +283,30 @@ var assert = require('assert')
 
 }()
 
+//VALIDATIONS.dataUri
+!function () {
+
+    var path = 'test/fixtures/data-uri.less'
+        , Recess = new RECESS.Constructor()
+        , validate = RECESS.Constructor.prototype.validate
+        , def
+
+    RECESS.Constructor.prototype.validate = noop
+
+    Recess.data = fs.readFileSync(path, 'utf8')
+
+    Recess.parse()
+
+    def = Recess.definitions[0]
+
+    RECESS.Constructor.RULES.dataUri(def, Recess.data)
+
+    assert.equal(typeof def.errors, 'undefined' )
+    RECESS.Constructor.prototype.validate = validate
+
+}()
+
+
 // Keep order of input paths
 !function () {
 

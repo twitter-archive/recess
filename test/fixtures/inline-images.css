@@ -8,5 +8,5 @@
   background: url(sprite.png);
 }
 .woo {
-  background: #fff url(../sprite.png) center center no-repeat;
+  background: #fff url(sprite.png) center center no-repeat;
 }
