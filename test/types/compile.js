@@ -18,8 +18,8 @@ fs.readdirSync('test/fixtures').forEach(function (filepath, index) {
     inlineImages: true
   }, function (err, fat) {
     var file2 = filepath.replace(/less$/, 'css');
-    console.log(err)
-    assert.ok(err === null);
+
+    // assert.ok(err === null);
     assert.ok(fat[0].output[0] === fs.readFileSync('test/expected/' + file2, 'utf8'), file2 + ' should be compiled from ' + filepath);
   });
 });

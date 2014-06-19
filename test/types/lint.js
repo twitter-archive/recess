@@ -1,6 +1,8 @@
 var fs = require('fs');
+var util = require('util');
 var assert = require('assert');
 var chalk = require('chalk');
+var _ = require('lodash');
 var RECESS = require('../../lib');
 var noop = function () {};
 
