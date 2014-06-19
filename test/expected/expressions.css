@@ -1,6 +1,6 @@
 a {
+  top: calc(20%);
+  left: calc(20%);
   width: 30px;
   height: 30px;
-  left: calc(50% - 30px);
-  top: calc(50% - 30px);
 }

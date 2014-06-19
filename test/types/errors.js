@@ -1,5 +1,6 @@
 var assert = require('assert');
-var colors = require('colors');
+var chalk  = require('chalk');
+
 var RECESS = require('../../lib');
 
 // error
@@ -9,7 +10,6 @@ var RECESS = require('../../lib');
     assert.ok(err.length == 1);
     assert.ok(/Error:/.test(err[0].toString()));
     assert.ok(!!instance);
-    console.log("✓ erroring".green);
+    console.log(chalk.green("✓ erroring correctly."));
   });
-
 }();
