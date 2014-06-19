@@ -1,41 +1,43 @@
 #!/usr/bin/env node
-var recess = require('../lib')
-  , watch  = require('watch')
-  , nopt   = require('nopt')
-  , path   = require('path')
-  , fs     = require('fs')
-  , config = '.recessrc'
-  , writeFile
-  , options
-  , output
-  , paths
+
+var recess = require('../lib'),
+  watch    = require('watch'),
+  nopt     = require('nopt'),
+  path     = require('path'),
+  fs       = require('fs'),
+  config   = '.recessrc',
+  writeFile, options, output, paths
 
 // exit with docs
-if (process.argv.length == 2) return recess.docs()
+if (process.argv.length == 2) {
+  return recess.info();
+}
 
 // define expected options
 options = {
-  compile: Boolean
-, compress: Boolean
-, config: path
-, format: String
-, includePath: [path, Array]
-, noIDs: Boolean
-, noJSPrefix: Boolean
-, noOverqualifying: Boolean
-, noSummary: Boolean
-, noUnderscores: Boolean
-, noUniversalSelectors: Boolean
-, prefixWhitespace: Boolean
-, strictPropertyOrder: Boolean
-, version: Boolean
-, watch: path
-, zeroUnits: Boolean
-, dataUri:[String,Boolean]
+  compile: Boolean,
+  compress: Boolean,
+  config: path,
+  format: String,
+  includePath: [path, Array],
+  noIDs: Boolean,
+  noJSPrefix: Boolean,
+  noOverqualifying: Boolean,
+  noSummary: Boolean,
+  noUnderscores: Boolean,
+  noUniversalSelectors: Boolean,
+  prefixWhitespace: Boolean,
+  strictPropertyOrder: Boolean,
+  version: Boolean,
+  watch: path,
+  zeroUnits: Boolean,
+  dataUri: [String, Boolean]
 }
 
 // parse options
-shorthand = { 'v': ['--version'] };
+shorthand = {
+  'v': ['--version']
+};
 options = nopt(options, shorthand, process.argv)
 
 // if help exit
@@ -43,7 +45,9 @@ if (options.help) return recess.docs()
 
 // set version
 recess.version = require(path.join(__dirname, '..', 'package.json')).version
-if (options.version) return console.log(recess.version)
+if (options.version) {
+  return console.log(recess.version);
+}
 
 // set path from remaining arguments
 paths = options.argv.remain
@@ -61,7 +65,6 @@ if (options.config || (fs.existsSync || path.existsSync)(config)) {
 // set CLI to true
 options.cli = true
 
-
 // if not watch - run Recess
 if (!options.watch) return recess(paths, options, function (err, instances) {
   var fails = instances.reduce(function (prev, inst) {
@@ -76,9 +79,9 @@ if (options.watch && !options.compile && !options.compress) options.compile = tr
 
 // set CLI to false
 options.cli = false
-paths  = paths[0].split(':')
+paths = paths[0].split(':')
 output = paths[1]
-paths  = paths[0]
+paths = paths[0]
 
 // generate output and write to file
 writeFile = function () {

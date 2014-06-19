@@ -7,7 +7,7 @@ Incorporate it into your development process as a linter, or integrate it direct
 
 ## GENERAL USE
 
-```CLI
+```shell
 $ recess [path] [options]
 ```
 

@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-require('./lint');
-require('./compile');
-require('./errors');
+require('./types/lint');
+// require('./compile');
+require('./types/errors');

@@ -32,6 +32,8 @@ nbproject
 .svn
 .CVS
 .idea
+.bowerrc
 
 #node modules
 node_modules
+vendor
