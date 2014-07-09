@@ -1,8 +1,14 @@
 {
   "name": "recess",
   "description": "A simple, attractive code quality tool for CSS built on top of LESS",
-  "version": "1.1.9",
+  "version": "2.0.0",
   "author": "Jacob Thornton <jacob@twitter.com> (https://github.com/fat)",
+  "maintainers": [
+    {
+      "name": "Jon Schlinkert",
+      "url": "https://github.com/jonschlinkert"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/twitter/recess.git"
@@ -28,6 +34,7 @@
     "lodash": "^2.4.1",
     "mime": ">=1.2.9",
     "nopt": ">= 1.0.10",
+    "resolve-dep": "^0.3.4",
     "watch": ">= 0.5.1"
   },
   "directories": {
@@ -39,5 +46,9 @@
   "bin": {
     "recess": "./bin/recess"
   },
-  "preferGlobal": true
+  "preferGlobal": true,
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "mocha": "^1.20.1"
+  }
 }
