@@ -8,7 +8,7 @@
 , "main": "./lib"
 , "homepage": "http://twitter.github.com/recess"
 , "engines": { "node": ">= 0.4.0" }
-, "dependencies": { "colors": ">= 0.3.0", "nopt": ">= 1.0.10", "underscore": ">= 1.2.1", "watch": ">= 0.5.1", "less": "~1.3.0" }
+, "dependencies": { "colors": ">= 1.0.0", "nopt": ">= 1.0.10", "underscore": ">= 1.2.1", "watch": ">= 0.5.1", "less": "~1.3.0" }
 , "directories": { "bin": "./bin" }
 , "scripts": { "test": "node test" }
 , "bin": { "recess": "./bin/recess" }
