@@ -34,7 +34,7 @@
     "lodash": "^2.4.1",
     "mime": ">=1.2.9",
     "nopt": ">= 1.0.10",
-    "resolve-dep": "^0.3.4",
+    "resolve-dep": "^0.5.3",
     "watch": ">= 0.5.1"
   },
   "directories": {
