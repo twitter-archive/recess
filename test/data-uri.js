@@ -10,7 +10,7 @@ var _      = require('lodash');
 
 var noop = function () {};
 
-xdescribe('VALIDATIONS.dataUri:', function () {
+describe.skip('VALIDATIONS.dataUri:', function () {
   it('image should be embedded', function () {
     var path = 'test/fixtures/data-uri.less';
     var Recess = new RECESS.Constructor();
