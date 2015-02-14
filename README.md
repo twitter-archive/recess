@@ -119,7 +119,7 @@ recess('./js/fat.css', options, function (err, instances) {
     console.log(
       obj,        // recess instance for fat.css
       obj.output, // array of loggable content
-      obj.errors, // array of failed lint rules
+      obj.errors  // array of failed lint rules
     );
   });
 });
