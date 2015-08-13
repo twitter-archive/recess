@@ -24,6 +24,7 @@ OPTIONS
 - --format <format> - control the output format of errors:
   - --format text - the default format, shows errors and context
   - --format compact - show errors one-error-per-line, useful for IDE integration
+  - --format junit - generate error report in jUnit format, useful for CI integration
 - --noSummary - don't output the summary block for each file
 - --includePath - accepts an additional directory path to look for `@import`:ed LESS files in.
 - --stripColors - removes color from output (useful when logging)

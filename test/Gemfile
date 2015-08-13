@@ -1,0 +1,4 @@
+gem 'guard'
+gem 'guard-cucumber'
+gem 'nokogiri'
+gem 'rspec'
