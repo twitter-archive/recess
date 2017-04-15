@@ -133,6 +133,14 @@ To install recess you need both node and npm installed.
 $ npm install recess -g
 ```
 
+CONTRIBUTING
+------------
+
+- Clone the repository
+- Insert repository folder
+- run `npm install`
+- run `make` to verify passing tests
+
 AUTHORS
 ------------
 
